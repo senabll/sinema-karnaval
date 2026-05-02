@@ -5,89 +5,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sinema Bulutu ☁️🎬</title>
     <style>
+        :root {
+            --bg-color: #ffffff;
+            --smiley-yellow: #ffcc00;
+            --accent-orange: #ff9933;
+        }
+
         body { 
-            /* Arka plana senin gönderdiğin görseli ekliyoruz */
-            background: url('https://i.ibb.co/3pYf9yB/smiley-pattern.jpg'); /* Örnek linktir, kendi görsel linkini de kullanabilirsin */
-            background-image: url('https://i.pinimg.com/originals/9e/3d/8c/9e3d8c1998f48358485292c72b2a64c4.jpg'); /* Benzer bir pattern linki koydum */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #fff; 
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            height: 100vh; margin: 0; overflow: hidden;
+            overflow: hidden;
+            /* Arka plan deseni: Kodla oluşturulmuş eğlenceli şekiller */
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 20% 20%, var(--smiley-yellow) 40px, transparent 41px),
+                radial-gradient(circle at 80% 10%, var(--smiley-yellow) 30px, transparent 31px),
+                radial-gradient(circle at 50% 50%, var(--smiley-yellow) 60px, transparent 61px),
+                radial-gradient(circle at 10% 80%, var(--smiley-yellow) 50px, transparent 51px),
+                radial-gradient(circle at 90% 90%, var(--smiley-yellow) 45px, transparent 46px),
+                /* Turuncu lekeler */
+                radial-gradient(ellipse at 30% 60%, var(--accent-orange) 15px, transparent 16px),
+                radial-gradient(ellipse at 70% 40%, var(--accent-orange) 20px, transparent 21px);
+            background-size: 300px 300px;
             position: relative;
         }
 
-        /* İçeriğin okunması için arka plana hafif bir karartma ekleyelim */
-        body::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.4); z-index: 0;
+        /* Gülen yüzlerin ağız ve gözleri için ufak bir hile */
+        body::after {
+            content: "🙂";
+            position: absolute;
+            font-size: 100px;
+            opacity: 0.1;
+            top: 10%; left: 50%;
+            transform: rotate(20deg);
+            z-index: -1;
+        }
+
+        /* Okunabilirlik için karartma katmanı */
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(2px);
+            z-index: 0;
         }
 
         .main-container {
-            text-align: center; z-index: 1; width: 90%; max-width: 500px;
-            background: rgba(0, 0, 0, 0.6); /* Yazıların okunması için siyah şeffaf kutu */
-            padding: 30px; border-radius: 30px; border: 3px solid #f1c40f;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 40px;
+            border-radius: 40px;
+            border: 4px solid var(--smiley-yellow);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            width: 85%;
+            max-width: 450px;
+        }
+
+        h1 {
+            color: var(--smiley-yellow);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .cloud-btn {
-            background: #fff; color: #333; border: none;
-            padding: 20px 40px; font-size: 1.5rem; font-weight: bold;
-            cursor: pointer; position: relative;
-            border-radius: 50px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            transition: 0.3s;
-            display: inline-block;
-            margin-top: 10px;
+            background: var(--smiley-yellow);
+            color: #000;
+            border: none;
+            padding: 20px 45px;
+            font-size: 1.4rem;
+            font-weight: 900;
+            border-radius: 100px;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #cca300;
+            transition: all 0.1s;
+            margin-bottom: 20px;
         }
 
-        .cloud-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 25px rgba(0,0,0,0.4); }
+        .cloud-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 4px 0 #cca300;
+        }
 
         #movie-box {
-            font-size: 1.8rem; margin-top: 30px; min-height: 100px;
-            color: #f1c40f; font-weight: bold;
-            display: flex; align-items: center; justify-content: center;
-            text-shadow: 2px 2px 4px #000;
+            font-size: 1.7rem;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            border-top: 1px solid #333;
+            padding-top: 20px;
         }
     </style>
 </head>
 <body>
 
+    <div class="overlay"></div>
+
     <div class="main-container">
-        <h1 style="color: #f1c40f; text-shadow: 2px 2px #000; margin-bottom: 20px;">🎬 SİNEMA BULUTU 🎬</h1>
+        <h1>🎬 SİNEMA BULUTU</h1>
         
         <button class="cloud-btn" onclick="kura()">FİLM SEÇ ✨</button>
 
-        <div id="movie-box">Hadi şansını dene!</div>
+        <div id="movie-box">Hazırsan basalım!</div>
     </div>
 
     <script>
         const arsiv = [
-            "Inception (2010)", "Interstellar (2014)", "The Dark Knight (2008)", 
+            "Oppenheimer (2023)", "Inception (2010)", "Interstellar (2014)", 
             "Dune: Part Two (2024)", "Parasite (2019)", "Joker (2019)",
-            "Spider-Man: Across the Spider-Verse (2023)", "Everything Everywhere All at Once (2022)",
-            "The Wolf of Wall Street (2013)", "Mad Max: Fury Road (2015)", "Whiplash (2014)",
-            "Soul (2020)", "Inside Out (2015)", "Coco (2017)", "Arrival (2016)",
-            "The Batman (2022)", "Top Gun: Maverick (2022)", "Oppenheimer (2023)",
-            "Ayla (2017)", "G.O.R.A (2004)", "7. Koğuştaki Mucize (2019)",
-            "Ölümlü Dünya (2018)", "Cinayet Süsü (2019)", "Bursa Bülbülü (2023)"
+            "The Batman (2022)", "Top Gun: Maverick (2022)", "Inside Out (2015)",
+            "7. Koğuştaki Mucize (2019)", "Ölümlü Dünya (2018)", "Cinayet Süsü (2019)",
+            "Bursa Bülbülü (2023)", "G.O.R.A (2004)", "Babam ve Oğlum (2005)",
+            "Kelebeğin Rüyası (2013)", "Ayla (2017)", "Everything Everywhere All at Once (2022)"
         ];
 
         function kura() {
             const box = document.getElementById("movie-box");
             let i = 0;
+            box.style.color = "#ffcc00";
+            
             const interval = setInterval(() => {
                 box.innerText = arsiv[Math.floor(Math.random() * arsiv.length)];
                 i++;
-                if(i > 15) {
+                if(i > 12) {
                     clearInterval(interval);
+                    box.style.color = "#fff";
                     box.innerText = "⭐ " + arsiv[Math.floor(Math.random() * arsiv.length)] + " ⭐";
                 }
-            }, 60);
+            }, 70);
         }
     </script>
 </body>
-</html> 
-</body>
-</html> 
+</html>
