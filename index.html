@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sinema Bulutu ☁️🎬</title>
     <style>
-        /* Arka planı neşeli stickerlarla dolduruyoruz */
         body { 
-            background: #2c3e50; 
-            background-image: 
-                url('https://www.transparenttextures.com/patterns/black-paper.png'),
-                linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9));
+            /* Arka plana senin gönderdiğin görseli ekliyoruz */
+            background: url('https://i.ibb.co/3pYf9yB/smiley-pattern.jpg'); /* Örnek linktir, kendi görsel linkini de kullanabilirsin */
+            background-image: url('https://i.pinimg.com/originals/9e/3d/8c/9e3d8c1998f48358485292c72b2a64c4.jpg'); /* Benzer bir pattern linki koydum */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: #fff; 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
@@ -18,62 +19,47 @@
             position: relative;
         }
 
-        /* Dekoratif Stickerlar (Rastgele yerleştirilmiş ikonlar) */
-        .sticker { position: absolute; font-size: 3rem; opacity: 0.2; z-index: -1; animation: float 6s ease-in-out infinite; }
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
+        /* İçeriğin okunması için arka plana hafif bir karartma ekleyelim */
+        body::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.4); z-index: 0;
         }
 
         .main-container {
             text-align: center; z-index: 1; width: 90%; max-width: 500px;
+            background: rgba(0, 0, 0, 0.6); /* Yazıların okunması için siyah şeffaf kutu */
+            padding: 30px; border-radius: 30px; border: 3px solid #f1c40f;
         }
 
-        /* Bulut Şeklinde Buton Tasarımı */
         .cloud-btn {
             background: #fff; color: #333; border: none;
-            padding: 25px 50px; font-size: 1.5rem; font-weight: bold;
+            padding: 20px 40px; font-size: 1.5rem; font-weight: bold;
             cursor: pointer; position: relative;
-            border-radius: 50px; /* Temel yuvarlaklık */
-            box-shadow: 10px 10px 0px #e50914;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
             transition: 0.3s;
             display: inline-block;
+            margin-top: 10px;
         }
 
-        /* Bulutun yan tümsekleri için ufak dokunuşlar */
-        .cloud-btn::after, .cloud-btn::before {
-            content: ''; position: absolute; background: #fff; border-radius: 50%; z-index: -1;
-        }
-        .cloud-btn::after { width: 50px; height: 50px; top: -20px; left: 30px; }
-        .cloud-btn::before { width: 40px; height: 40px; top: -10px; right: 30px; }
-
-        .cloud-btn:hover { transform: scale(1.1); box-shadow: 15px 15px 0px #b20710; }
-        .cloud-btn:active { transform: scale(0.9); }
+        .cloud-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 25px rgba(0,0,0,0.4); }
 
         #movie-box {
-            font-size: 2rem; margin-top: 50px; min-height: 120px;
-            background: rgba(255,255,255,0.1); padding: 20px;
-            border-radius: 20px; border: 2px dashed #f1c40f;
+            font-size: 1.8rem; margin-top: 30px; min-height: 100px;
+            color: #f1c40f; font-weight: bold;
             display: flex; align-items: center; justify-content: center;
+            text-shadow: 2px 2px 4px #000;
         }
     </style>
 </head>
 <body>
 
-    <!-- Arka plan stickerları -->
-    <div class="sticker" style="top:10%; left:10%;">🍿</div>
-    <div class="sticker" style="top:20%; right:15%;">📺</div>
-    <div class="sticker" style="bottom:15%; left:15%;">🎬</div>
-    <div class="sticker" style="bottom:10%; right:10%;">🎟️</div>
-    <div class="sticker" style="top:50%; left:5%;">🎥</div>
-    <div class="sticker" style="top:40%; right:5%;">🎞️</div>
-
     <div class="main-container">
-        <h1 style="color: #f1c40f; text-shadow: 2px 2px #000;">☁️ SİNEMA BULUTU ☁️</h1>
+        <h1 style="color: #f1c40f; text-shadow: 2px 2px #000; margin-bottom: 20px;">🎬 SİNEMA BULUTU 🎬</h1>
         
-        <button class="cloud-btn" onclick="kura()">FİLM SEÇ</button>
+        <button class="cloud-btn" onclick="kura()">FİLM SEÇ ✨</button>
 
-        <div id="movie-box">Şansını dene!</div>
+        <div id="movie-box">Hadi şansını dene!</div>
     </div>
 
     <script>
@@ -84,25 +70,24 @@
             "The Wolf of Wall Street (2013)", "Mad Max: Fury Road (2015)", "Whiplash (2014)",
             "Soul (2020)", "Inside Out (2015)", "Coco (2017)", "Arrival (2016)",
             "The Batman (2022)", "Top Gun: Maverick (2022)", "Oppenheimer (2023)",
-            "Babam ve Oğlum (2005)", "G.O.R.A (2004)", "7. Koğuştaki Mucize (2019)",
+            "Ayla (2017)", "G.O.R.A (2004)", "7. Koğuştaki Mucize (2019)",
             "Ölümlü Dünya (2018)", "Cinayet Süsü (2019)", "Bursa Bülbülü (2023)"
         ];
 
         function kura() {
             const box = document.getElementById("movie-box");
             let i = 0;
-            box.style.color = "#f1c40f";
-            
             const interval = setInterval(() => {
                 box.innerText = arsiv[Math.floor(Math.random() * arsiv.length)];
                 i++;
                 if(i > 15) {
                     clearInterval(interval);
-                    box.style.color = "#fff";
-                    box.innerText = "✨ " + arsiv[Math.floor(Math.random() * arsiv.length)] + " ✨";
+                    box.innerText = "⭐ " + arsiv[Math.floor(Math.random() * arsiv.length)] + " ⭐";
                 }
-            }, 70);
+            }, 60);
         }
     </script>
+</body>
+</html> 
 </body>
 </html> 
